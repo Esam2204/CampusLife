@@ -1,15 +1,14 @@
-public class AssignmentTask {
+public class PlanItem {
+
     private String title;
-    private Course course;
     private int estimatedHours;
-    private int daysUntilDue;
+    private int daysUntil;
     private boolean completed;
 
-    public AssignmentTask(String title, Course course, int estimatedHours, int daysUntilDue) {
+    public PlanItem(String title, int estimatedHours, int daysUntil) {
         this.title = title;
-        this.course = course;
         this.estimatedHours = estimatedHours;
-        this.daysUntilDue = daysUntilDue;
+        this.daysUntil = daysUntil;
         this.completed = false;
     }
 
@@ -17,16 +16,12 @@ public class AssignmentTask {
         return title;
     }
 
-    public Course getCourse() {
-        return course;
-    }
-
     public int getEstimatedHours() {
         return estimatedHours;
     }
 
-    public int getDaysUntilDue() {
-        return daysUntilDue;
+    public int getDaysUntil() {
+        return daysUntil;
     }
 
     public boolean isCompleted() {
@@ -37,17 +32,21 @@ public class AssignmentTask {
         completed = true;
     }
 
+    // Базовая логика срочности
     public boolean isUrgent() {
-        return daysUntilDue <= 2 && !completed;
+        return daysUntil <= 2 && !completed;
+    }
+
+    public String getCategory() {
+        return "General";
     }
 
     @Override
     public String toString() {
-        return "AssignmentTask{title='" + title +
-                "', course='" + course.getName() +
+        return getCategory() +
+                "{title='" + title +
                 "', estHours=" + estimatedHours +
-                ", dueIn=" + daysUntilDue +
+                ", dueIn=" + daysUntil +
                 ", completed=" + completed + "}";
     }
 }
-
